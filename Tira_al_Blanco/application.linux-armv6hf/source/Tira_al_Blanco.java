@@ -65,10 +65,30 @@ public void setup() {
 
 public void draw() {  
   box2d.step();
-  if(pantalla == 0){
-    image(pantalla_de_inicio,0,0,1360, 456);
-  }else if(pantalla == 1){
-  image(escenario_de_tiro, 0, 0, 1360, 456);
+  switch(pantalla) {
+  case 0:
+  inicio();
+  break;
+  
+  case 1:
+  escenariodetiro();
+  break;
+  
+  case 2:
+  fin();
+  break;
+  }
+}
+
+public void inicio() {
+pushMatrix();
+image(pantalla_de_inicio,0,0,1360, 456);
+popMatrix();
+}
+
+public void escenariodetiro() {
+pushMatrix();
+image(escenario_de_tiro, 0, 0, 1360, 456);
   boundary.display();
   boundary2.display();
   arco.display();
@@ -76,9 +96,13 @@ public void draw() {
   image(forma_del_arco , 33, 190, 136.55f, 188.33f);
   image(forma_de_la_diana, 1160, 65, 81, 81);
   flecha.display();
-  } else if(pantalla == 2){
-    image(pantalla_de_fin, 0, 0, 1360, 456);
-  }
+popMatrix();
+}
+
+public void fin() {
+pushMatrix();
+image(pantalla_de_fin, 0, 0, 1360, 456);
+popMatrix();
 }
 
 public void mousePressed(){
